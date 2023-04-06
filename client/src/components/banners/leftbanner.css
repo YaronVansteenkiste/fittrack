@@ -1,0 +1,40 @@
+.leftbanner { 
+    background-color: #171b46;
+    width: 11%;
+    height: 100vh;
+    text-align: center;
+    color: white;
+  }
+
+  .logosection {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    font-size:1.5em;
+  }
+  
+  .navlink {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+    margin: 60px auto;
+  }
+  
+  .navlink:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .navlink:active {
+    background-color: rgba(255, 255, 255, 0.5);
+    box-shadow: inset 0px 0px 20px rgba(255, 255, 255, 0.5);
+  }
+  
+  .navlink .icon {
+    font-size: 24px;
+    color: #fff;
+  }
+  

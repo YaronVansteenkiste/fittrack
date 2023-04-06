@@ -1,0 +1,29 @@
+.circlediagram {
+    width: 15rem;
+    height: 15rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  
+  .segment {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    clip-path: polygon(50% 0%, 50% 50%, 0% 50%);
+    transform-origin: center center;
+    transition: clip-path 0.3s ease;
+  }
+  
+  .label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+  }
+  

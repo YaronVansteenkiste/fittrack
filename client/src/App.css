@@ -1,0 +1,141 @@
+body {
+  background-color: #0f1234 !important;
+}
+
+
+
+
+
+.dashboard {
+  text-align: left;
+  margin:auto;
+}
+
+.greeting {
+  font-weight: 400;
+  margin-left: 60px;
+  color: white;
+  font-size: 2.3em;
+}
+
+.journeystat {
+  background-color: #171b46;
+  color: white;
+  width: 90%;
+  margin:auto;
+  height: 27vh;
+  padding-top:1px;
+  border-radius:14px;
+}
+
+.subtitles {
+  margin-left:20px;
+  font-weight:600;
+}
+
+.fitnesscontainer {
+  background-color: #171b46;
+  width: 60%;
+  margin-right:5px;
+  height: 37vh;
+  border-radius:14px;
+}
+
+.dietcontainer {
+  background-color: #171b46;
+  width: 60%;
+  margin-left:5px;
+  height: 37vh;
+  border-radius:14px;
+}
+
+.journeystat:hover,
+.fitnesscontainer:hover,
+.dietcontainer:hover {
+  background-color: #191d4b;
+  cursor: pointer;
+}
+
+.circlesection {
+  justify-content: center;
+  display: grid;
+}
+
+.fitness-charts {
+  color: white;
+  width: 90%;
+  margin: 10px auto;
+  height: 300px;
+}
+
+.fitnessection {
+  display:inline-flex;
+  width: 100%;
+  align-content: space-between;
+}
+
+.rightsection {
+  display:inline-block;
+  width: 90%;
+  height: 100vh;
+}
+
+.topbanner {
+  color: white;
+  background-color: #15183f;
+  height: 110px;
+  width: 100%;
+  text-align: right;
+}
+
+
+
+.profilecontainer {
+  width: 20%;
+  height: 70px;
+  right: 0;
+  position: absolute;
+  margin-top: 20px;
+  margin-right:40px;
+}
+
+.App {
+  background-color: #0f1234 !important;
+  text-align: center;
+  display: flex;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
