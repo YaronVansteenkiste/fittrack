@@ -1,35 +1,61 @@
-import express from 'express';
-import { db } from '../connect.js';
+import { db } from "../connect.js";
 
-const router = express.Router();
+export const createCalories = (req, res) => {
+  const { userId, currentCalories, requiredCalories} = req.body;
+  const query = 'INSERT INTO calories (userId, currentCalories, requiredCalories) VALUES (?, ?, ?)';
+  db.query(query, [userId, currentCalories, requiredCalories], (err, result)=> {
+    if (err) throw err;
+    res.send("Calories entry created successfully!");
+  })
+}
 
-router.get('/:userId', (req, res) => {
-  const userId = req.params.userId;
-  const query = 'SELECT * FROM calories WHERE user_id = ?';
-
-  db.query(query, [userId], (err, result) => {
-    if (err) {
-      console.error(err);
-      res.status(500).send('Error fetching calorie measurements for user');
-    } else {
-      res.json(result);
-    }
+export const updateCurrentCalories = (req, res) => {
+  const { userId } = req.params;
+  const { currentCalories } = req.body;
+  const query = 'UPDATE calories SET currentCalories = ? WHERE userId = ?';
+  console.log(req.params, req.body)
+  db.query (query, [userId, currentCalories], (err, result) => {
+    if (
+      err) throw err;
+    res.send("currentCalories entry updated!")
   });
-});
+}
 
-// add a new calorie measurement for a user
-router.post('/', (req, res) => {
-  const { user_id, amount, date } = req.body;
-  const query = 'INSERT INTO calories (user_id, amount, date) VALUES (?, ?, ?)';
-
-  db.query(query, [user_id, amount, date], (err, result) => {
-    if (err) {
-      console.error(err);
-      res.status(500).send('Error adding calorie measurement for user');
-    } else {
-      res.status(201).send('Calorie measurement added successfully');
-    }
+export const updateRequiredCalories = (req, res) => {
+  const { userId } = req.params;
+  const { requiredCalories } = req.body;
+  const query = 'UPDATE calories SET requiredCalories = ? WHERE userId = ?';
+  console.log(req.params, req.body)
+  db.query (query, [userId, requiredCalories], (err, result) => {
+    if (
+      err) throw err;
+    res.send("requiredCalories entry updated!")
   });
-});
+}
 
-export default router;
+
+export const getCurrentCalories = (req, res) => {
+  const { userId } = req.params;
+  const query = `SELECT currentCalories FROM calories WHERE userId = ?`;
+  db.query (query, [userId], (err, result) => {
+    if (
+      err) throw err;
+      const currentCalories = result.map(item => item.currentCalories);
+      res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+      res.setHeader('Access-Control-Allow-Methods', 'GET');
+      res.send(currentCalories);
+  });
+}
+
+export const getRequiredCalories = (req, res) => {
+  const { userId } = req.params;
+  const query = `SELECT requiredCalories FROM calories WHERE userId = ?`;
+  db.query (query, [userId], (err, result) => {
+    if (
+      err) throw err;
+      const requiredCalories = result.map(item => item.requiredCalories);
+      res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+      res.setHeader('Access-Control-Allow-Methods', 'GET');
+      res.send(requiredCalories);
+  });
+}
