@@ -1,10 +1,30 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import './barchart.css'
 import anime from "animejs";
+import axios from "axios";
 
 function BarChart() {
+
+  const [activity, setActivity] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await axios.get("http://localhost:8800/api/activity/1");
+      const data = Array.isArray(response.data)
+        ? response.data
+        : response.data.activity;
+      console.log(data);
+      setActivity(data);
+    };
+    fetchData();
+  }, []);
+
   const days = ['M', 'T', 'W', 'T', 'F', 'S', 'S','M', 'T', 'W', 'T', 'F', 'S'];
-  const activity = [257, 1424, 244, 1245, 938, 2424, 244, 3, 244, 124, 5, 46, 2,];
+  const activityData = activity.map((activity, index) => ({
+    day: days[index],
+    activity
+  }));
+  
   const today = new Date().getDay() -1;
 
   useEffect(() => {
@@ -22,13 +42,13 @@ function BarChart() {
   return (
     <div className="barchart">
       <div className="bars">
-        {activity.map((value, index) => (
+        {activityData.map((value, index) => (
           <div
             key={index}
             className="bar"
             style={{
-              height: `calc(${value / Math.max(...activity) * 27}vh)`,
-              maxWidth: `${100 / activity.length}%`,
+              height: `calc(${value.activity / Math.max(...activityData.map(a => a.activity)) * 27}vh)`,
+              maxWidth: `${100 / activityData.length}%`,
               backgroundColor: index === today ? 'white' : '#4697C5',
             }}
           />

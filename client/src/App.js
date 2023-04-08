@@ -6,6 +6,7 @@ import BarChart from './components/charts/barchart';
 import CircleDiagram from './components/charts/circlechart';
 import LeftBanner from './components/banners/leftbanner';
 
+import profileIcon from './components/images/profilepic.png'
 
 function App() {
 
@@ -15,7 +16,8 @@ function App() {
       <div className='rightsection'>
         <div className='topbanner'>
           <div className='profilecontainer'>
-            <h3>Big uwu</h3>
+            <img className='profileicon' src={profileIcon}></img>
+            <h3>Yaron</h3>
           </div>
         </div>
         <div className='dashboard'>

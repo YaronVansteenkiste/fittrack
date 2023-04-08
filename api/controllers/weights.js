@@ -2,7 +2,6 @@ import { db } from "../connect.js";
 
 
 export const createWeight = (req, res) => {
-  console.log(req.body)
   const { userId, weight, date } = req.body;
   const query = `INSERT INTO weights (userId, weight, date) VALUES (?, ?, ?)`;
   db.query(query, [userId, weight, date], (err, result) => {
@@ -14,7 +13,6 @@ export const createWeight = (req, res) => {
 
 export const getAllWeights = (req, res) => {
   const { userId } = req.params; 
-  console.log(userId)
   const query = `SELECT weight FROM weights WHERE userId = ?`;
   db.query(query, [userId], (err, result) => {
     if (err) throw err;

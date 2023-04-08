@@ -10,7 +10,7 @@ function LeftBanner() {
     return (
         <div className='leftbanner'>
             <div className='logosection'>
-                Logo
+                FitTrack
             </div>
             <div className='navlink'>
                 <Nav.Link eventKey="link-1"><FontAwesomeIcon icon={faChartLine} className='icon' /></Nav.Link>
