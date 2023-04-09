@@ -1,0 +1,96 @@
+.loginpage {
+    width: 100%;
+    display:grid;
+    margin:auto;
+    justify-items: center;
+    align-items: center;
+    margin-top: 20vh;
+  }
+  
+  .header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  h1 {
+    color: white;
+  }
+  
+  .logincontainer {
+    border-radius: 14px;
+    background-color: #111332;
+    color: white;
+    display:inline-flex;
+    width: 845px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    margin-top: 20px;
+  }
+  
+  .picturecontainer {
+    width: 533px;
+    border-bottom-left-radius: 14px;
+  }
+
+  .credscontainer {
+    padding: 10px;
+  }
+
+  
+  .loginPicture {
+    width: 100%;
+    border-bottom-left-radius: 14px;
+    border-top-left-radius: 14px;
+  }
+  
+  .formcontainer {
+    width: 50%;
+    z-index: 1;
+  }
+  
+
+  .formactioncontainer {
+    display: grid;
+    margin-top: 39px;
+  }
+  
+
+  .highlight {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: linear-gradient(to right, #23a6d5, #23d5ab, #a5de23, #d5238f, #7023d5);
+    background-size: 1000% 1000%;
+    z-index: 1;
+    pointer-events: none;
+  }
+  
+  .snake {
+    position: absolute;
+    transform: translate(-5%, -20%);
+    width: 390px;
+    z-index: -1;
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+  }
+  
+  
+  .logininput {
+    width: 94%;
+    margin:auto;
+    border-radius: 30px;
+    border:none;
+    z-index: 2;
+    cursor:text !important;
+  }
+
+  .loginbutton {
+    background-color: red !important;
+    width: 80%;
+    margin:auto;
+    border-radius:100px;
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }

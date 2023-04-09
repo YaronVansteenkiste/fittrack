@@ -4,11 +4,6 @@ body {
   background: radial-gradient(circle, rgb(212, 49, 78) 0%, rgba(82,21,78,1) 92%);
 }
 
-.dashboard {
-  text-align: left;
-  margin:auto;
-}
-
 .greeting {
   font-weight: 400;
   margin-left: 60px;
@@ -100,7 +95,7 @@ body {
 
 .profilecontainer {
   background-color: #111332;
-  width: 13%;
+  width: 200px;
   height: 70px;
   right: 0;
   position: absolute;
@@ -119,17 +114,6 @@ body {
 .App {
   text-align: center;
   display: flex;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
 }
 
 .App-header {

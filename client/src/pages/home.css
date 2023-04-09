@@ -1,0 +1,33 @@
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right:0;
+    background-color: #131638;
+    margin-top: 90px;
+    margin-right:40px;
+    width:200px;
+    z-index: 1;
+    cursor: pointer;
+    color: white;
+  }
+  
+  .dropdown-content a {
+    color: white;
+    padding: 10px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #15183d;
+  }
+
+  .show {display:block;}
+
+  .expand {margin-top: 70px !important;}
+
+  .dashboard {
+    text-align: left;
+    margin:auto;
+    margin-top: 10px;
+  }
