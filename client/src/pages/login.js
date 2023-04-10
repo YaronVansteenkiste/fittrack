@@ -5,8 +5,7 @@ import Form from 'react-bootstrap/Form';
 import anime from 'animejs';
 import { useNavigate } from "react-router-dom";
 import {UserContext} from '../components/context/UserContext.js'
-
-
+import {ReactComponent  as Logo} from '../components/images/logo.svg'
 import './login.css';
 
 function Login() {
@@ -44,7 +43,7 @@ function Login() {
 
   useEffect(() => {
     let current = null;
-    const emailInput = document.querySelector('#email');
+    const usernameInput = document.querySelector('#username');
     const passwordInput = document.querySelector('#password');
     const submitButton = document.querySelector('#submit');
 
@@ -65,7 +64,7 @@ function Login() {
       });
     };
 
-    emailInput.addEventListener('focus', (e) => {
+    usernameInput.addEventListener('focus', (e) => {
       animateSnake(0, '240 1386');
     });
 
@@ -88,13 +87,13 @@ function Login() {
 
 
   return (
-    <div className='loginpage'>
+    <div className='credpage'>
       <div className='header'>
         <h1>Welcome to GymTrack!</h1>
       </div>
-      <div className='logincontainer'>
+      <div className='credcontainer'>
         <div className='picturecontainer'>
-          <img className='loginPicture' src={examplePicture} alt='Example' />
+          <Logo></Logo>
         </div>
         <div className='formcontainer'>
           <div className='credscontainer'>
@@ -132,19 +131,21 @@ function Login() {
                   height='5'
                 />
               </svg>
-              <Form.Group  className='mb-3' controlId="email">
+              <Form.Group  className='mb-3' controlId="username">
                 <Form.Label>Username: {err && err}</Form.Label>
-                <Form.Control className='logininput' type="text" placeholder="Enter username" name="username" onChange={handleChange} />
+                <Form.Control className='credinput' type="text" placeholder="Enter username" name="username" onChange={handleChange} />
               </Form.Group>
               <Form.Group className="mb-3" controlId="password">
                 <Form.Label>Password</Form.Label>
-                <Form.Control className='logininput' type="password" placeholder="Password" name='password' onChange={handleChange}/>
+                <Form.Control className='credinput' type="password" placeholder="Password" name='password' onChange={handleChange}/>
               </Form.Group>
             </Form>
             <div className='formactioncontainer'>
-              <Button className='loginbutton' variant="primary" type="submit" id="submit" onClick={handleLogin}>
+              <Button className='credbutton' variant="primary" type="submit" id="submit" onClick={handleLogin}>
                 Login
               </Button>
+              <a style={{margin: '10px'}} href='/register'>Don't have an account?</a>
+              <a style={{margin: '10px'}} href='#'>Forgot password?</a>
             </div>
           </div>
         </div>

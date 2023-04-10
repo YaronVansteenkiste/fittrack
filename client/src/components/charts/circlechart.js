@@ -1,17 +1,20 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import anime from "animejs/lib/anime.es.js";
 import axios from "axios";
+import { UserContext } from '../context/UserContext.js'
+
 
 function CircleDiagram() {
   const [currentCalories, setCurrentCalories] = useState(0);
   const [requiredCalories, setRequiredCalories] = useState(0);
   const circleRef = useRef(null);
+  const { currentUser } = useContext(UserContext);
 
   useEffect(() => {
-    axios.get("http://localhost:8800/api/calories/1").then((response) => {
+    axios.get("http://localhost:8800/api/calories/"+ (currentUser ? (currentUser.id) : (0))).then((response) => {
       setCurrentCalories(response.data[0]);
     });
-    axios.get("http://localhost:8800/api/calories/req/1").then((response) => {
+    axios.get("http://localhost:8800/api/calories/req/"+(currentUser ? (currentUser.id) : (0))).then((response) => {
       setRequiredCalories(response.data[0]);
     });
   }, []);

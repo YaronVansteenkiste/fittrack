@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import './barchart.css'
 import anime from "animejs";
 import axios from "axios";
+import { UserContext } from '../context/UserContext.js'
 
 function BarChart() {
 
   const [activity, setActivity] = useState([]);
+  const { currentUser } = useContext(UserContext);
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get("http://localhost:8800/api/activity/1");
+      const response = await axios.get("http://localhost:8800/api/activity/"+ (currentUser ? (currentUser.id) : (0)));
       const data = Array.isArray(response.data)
         ? response.data
         : response.data.activity;

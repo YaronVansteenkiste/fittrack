@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "./linechart.css";
 import anime from "animejs";
 import axios from "axios";
+import { UserContext } from '../context/UserContext.js'
+
 
 function LineChart() {
   const [weights, setWeights] = useState([]);
+  const { currentUser } = useContext(UserContext);
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get("http://localhost:8800/api/weights/1");
+      const response = await axios.get("http://localhost:8800/api/weights/"+(currentUser ? (currentUser.id) : (0)));
       const data = Array.isArray(response.data)
         ? response.data
         : response.data.weights;

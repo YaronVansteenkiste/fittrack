@@ -31,3 +31,85 @@
     margin:auto;
     margin-top: 10px;
   }
+
+
+
+  /*STAT SECTION*/
+  
+.greeting {
+  font-weight: 400;
+  margin-left: 60px;
+  color: white;
+  font-size: 2.3em;
+}
+
+.subtitles {
+  margin-left:20px;
+  font-weight:600;
+}
+
+  .journeystat {
+    background-color: #111332;
+    color: white;
+    width: 90%;
+    margin:auto;
+    height: 27vh;
+    padding-top:1px;
+    border-radius:14px;
+    padding-top: 14px;
+    min-height: 140px;
+  }
+
+  
+  .fitnesscontainer, 
+  .dietcontainer{
+    background-color: #111332;
+    width: 60%;
+    height: 37vh;
+    border-radius:14px;
+    padding: 20px;
+  }
+
+.fitnesscontainer{
+  margin-right:5px;
+}
+
+.dietcontainer {
+  margin-left:5px;
+}
+
+.journeystat:hover,
+.fitnesscontainer:hover,
+.dietcontainer:hover {
+  cursor: pointer;
+  background-color: #131537
+}
+
+.circlesection {
+  justify-content: center;
+  display: grid;
+}
+
+.row-2-container,
+.row-3-container {
+  color: white;
+  width: 90%;
+  margin: 10px auto;
+  height: 300px;
+}
+
+.row-3-container {
+  margin-top: 80px;
+}
+
+.row-2-section {
+  display:inline-flex;
+  width: 100%;
+  align-content: space-between;
+}
+
+.rightsection {
+  display:inline-block;
+  width: 90%;
+  height: 100vh;
+}

@@ -4,7 +4,7 @@ import LineChart from '../components/charts/linechart'
 import BarChart from '../components/charts/barchart';
 import CircleDiagram from '../components/charts/circlechart';
 import LeftBanner from '../components/banners/leftbanner';
-import profileIcon from '../components/images/profilepic.png'
+import profileIcon from '../components/images/download.png'
 import { UserContext } from '../components/context/UserContext.js'
 import axios from 'axios';
 
@@ -64,8 +64,8 @@ function Home() {
               <LineChart />
             </div>
           </div>
-          <div className='fitness-charts'>
-            <div className='fitnessection'>
+          <div className='row-2-container'>
+            <div className='row-2-section'>
               <div className='fitnesscontainer'>
                 <p className='subtitles'>Fitness</p>
                 <BarChart />

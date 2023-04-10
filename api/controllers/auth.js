@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 export const register = (req, res) => {
+  console.log(req.body)
 
   const q = "SELECT * FROM users WHERE username = ?";
 
@@ -13,13 +14,12 @@ export const register = (req, res) => {
     const hashedPassword = bcrypt.hashSync(req.body.password, salt);
 
     const q =
-      "INSERT INTO users (`username`,`email`,`password`,`name`) VALUE (?)";
+      "INSERT INTO users (`username`,`email`,`password`) VALUE (?)";
 
     const values = [
       req.body.username,
       req.body.email,
       hashedPassword,
-      req.body.name,
     ];
 
     db.query(q, [values], (err, data) => {

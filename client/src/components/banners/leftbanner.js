@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChartLine, faUser, faDumbbell, faUtensils, faCog } from '@fortawesome/free-solid-svg-icons';
 import './leftbanner.css'
 import Nav from 'react-bootstrap/Nav';
+import {ReactComponent as Logo} from '../images/logo.svg'
 
 
 
@@ -10,7 +11,7 @@ function LeftBanner() {
     return (
         <div className='leftbanner'>
             <div className='logosection'>
-                GymTrack
+                <Logo style={{width:'60%', height: '200px'}}></Logo>
             </div>
             <div className='navlink'>
                 <Nav.Link eventKey="link-1"><FontAwesomeIcon icon={faChartLine} className='icon' /></Nav.Link>
