@@ -11,13 +11,13 @@ function LeftBanner() {
     return (
         <div className='leftbanner'>
             <div className='logosection'>
-                <Logo style={{width:'60%', height: '200px'}}></Logo>
+                <Logo style={{width:'100px', height: '200px'}}></Logo>
             </div>
-            <div className='navlink'>
-                <Nav.Link eventKey="link-1"><FontAwesomeIcon icon={faChartLine} className='icon' /></Nav.Link>
+            <div id="navhome" className='navlink'>
+                <Nav.Link  href="/" eventKey="link-1"><FontAwesomeIcon icon={faChartLine} className='icon' /></Nav.Link>
             </div>
-            <div className='navlink'>
-                <Nav.Link eventKey="link-1"><FontAwesomeIcon icon={faUser} className='icon' /></Nav.Link>
+            <div id="navprofile" className='navlink'>
+                <Nav.Link href="/profile" eventKey="link-1"><FontAwesomeIcon icon={faUser} className='icon' /></Nav.Link>
 
             </div>
             <div className='navlink'>

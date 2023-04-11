@@ -1,9 +1,10 @@
 .leftbanner { 
     background-color: #111332;
-    width: 150px;
+    width: 10%;
     height: 100vh;
     text-align: center;
     color: white;
+    position:fixed;
   }
 
   .logosection {
