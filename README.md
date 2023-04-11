@@ -1,5 +1,6 @@
 # GymTrack
-![alt text]([http://url/to/img.png](https://imgur.com/a/F3ATYQy))
+![Preview](https://imgur.com/a/F3ATYQy)
+
 
 GymTrack is a work in progress fitness tracker app built with ReactJS. This repository contains the client-side code, and the backend is located in the 'api' folder.
 
