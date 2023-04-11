@@ -56,7 +56,7 @@ function Profile() {
 
   useEffect(() => {
     document.getElementById('navprofile').classList.toggle('activenav')
-  })
+  }, [])
   return (
     <div className='App'>
       <LeftBanner />
