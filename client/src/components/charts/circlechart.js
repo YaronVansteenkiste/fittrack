@@ -37,7 +37,6 @@ function CircleDiagram() {
     });
   }, [currentCalories, requiredCalories]);
 
-  console.log(currentCalories, requiredCalories)
 
   return (
     <div className="circlesection">

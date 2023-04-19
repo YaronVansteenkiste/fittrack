@@ -15,7 +15,6 @@ function LineChart() {
       const data = Array.isArray(response.data)
         ? response.data
         : response.data.weights;
-      console.log(data);
       setWeights(data);
     };
     fetchData();

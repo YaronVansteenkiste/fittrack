@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { ChromePicker } from 'react-color';
+import React, { useContext, useEffect, useState } from 'react';
 import LeftBanner from '../components/banners/leftbanner';
 import './profile.css';
 import profileIcon from '../components/images/download.png';
@@ -7,14 +6,15 @@ import Topbanner from '../components/banners/topbanner';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import { UserContext } from '../components/context/UserContext';
 
 
 function Profile() {
   const [bgColor1, setBgColor1] = useState('#25d5bd');
   const [bgColor2, setBgColor2] = useState('#9198e5');
-  const [profileInfo, setProfileInfo] = useState('');
   const [editMode, setEditMode] = useState(false);
   const [editedText, setEditedText] = useState('');
+  const {currentUser} = useContext(UserContext)
 
   const handleColorChange1 = (e) => {
     setBgColor1(e.target.value);
@@ -37,21 +37,6 @@ function Profile() {
     var yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
     return (yiq >= 128) ? 'black' : 'white';
   }
-
-
-  function handleProfileInfoChange(e) {
-    setProfileInfo(e.target.value);
-  }
-
-  function toggleEditMode() {
-    setEditMode(!editMode);
-  }
-
-  const save = () => {
-    const paragraph = document.getElementById('profile-info-paragraph');
-    paragraph.innerText = editedText;
-    setEditedText('');
-  };
 
 
   useEffect(() => {
@@ -94,8 +79,9 @@ function Profile() {
               <img
                 style={{ width: '190px', borderRadius: '100%' }}
                 src={profileIcon}
+                alt='profile'
               ></img>
-              <h1 style={{ color: getContrastYIQ(bgColor2) }}>Username</h1>
+              <h1 style={{ color: getContrastYIQ(bgColor2) }}>{currentUser.username}</h1>
             </div>
             {editMode ? (
               <div className='profile-infosection'>

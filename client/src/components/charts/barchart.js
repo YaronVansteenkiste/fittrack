@@ -15,7 +15,6 @@ function BarChart() {
       const data = Array.isArray(response.data)
         ? response.data
         : response.data.activity;
-      console.log(data);
       setActivity(data);
     };
     fetchData();
