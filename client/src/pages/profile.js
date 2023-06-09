@@ -3,18 +3,23 @@ import LeftBanner from '../components/banners/leftbanner';
 import './profile.css';
 import profileIcon from '../components/images/download.png';
 import Topbanner from '../components/banners/topbanner';
-
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { UserContext } from '../components/context/UserContext';
 
+import axios from 'axios';
+
 
 function Profile() {
-  const [bgColor1, setBgColor1] = useState('#25d5bd');
-  const [bgColor2, setBgColor2] = useState('#9198e5');
+  const [bgColor1, setBgColor1] = useState('');
+  const [bgColor2, setBgColor2] = useState('');
   const [editMode, setEditMode] = useState(false);
   const [editedText, setEditedText] = useState('');
-  const {currentUser} = useContext(UserContext)
+  const navigate = useNavigate();
+  const [currentUser, setCurrentUser] = useState(
+    JSON.parse(localStorage.getItem("user")) || null
+  );
 
   const handleColorChange1 = (e) => {
     setBgColor1(e.target.value);
@@ -24,24 +29,73 @@ function Profile() {
     setBgColor2(e.target.value);
   };
 
+  const updateUserBioLocalStorage = (updatedUserBio) => {
+    localStorage.setItem("userBio", updatedUserBio);
+  };
+
+
   function showColors() {
-    document.getElementById('bgColor1').classList.toggle('show')
-    document.getElementById('bgColor2').classList.toggle('show')
+    document.getElementById('bgColor1').classList.toggle('show');
+    document.getElementById('bgColor2').classList.toggle('show');
   }
 
   function getContrastYIQ(hexcolor) {
-    hexcolor = hexcolor.replace("#", "");
-    var r = parseInt(hexcolor.substr(0, 2), 16);
-    var g = parseInt(hexcolor.substr(2, 2), 16);
-    var b = parseInt(hexcolor.substr(4, 2), 16);
-    var yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
-    return (yiq >= 128) ? 'black' : 'white';
+    hexcolor = hexcolor.replace('#', '');
+    const r = parseInt(hexcolor.substr(0, 2), 16);
+    const g = parseInt(hexcolor.substr(2, 2), 16);
+    const b = parseInt(hexcolor.substr(4, 2), 16);
+    const yiq = (r * 299 + g * 587 + b * 114) / 1000;
+    return yiq >= 128 ? 'black' : 'white';
   }
 
-
   useEffect(() => {
-    document.getElementById('navprofile').classList.toggle('activenav')
-  }, [])
+    document.getElementById('navprofile').classList.toggle('activenav');
+
+    axios.get('http://localhost:8800/api/auth/getcolors', {
+      params: {
+        id: currentUser.id
+      },
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+    )
+      .then(response => {
+        const { bgcolor1, bgcolor2 } = response.data;
+        setBgColor1(bgcolor1);
+        setBgColor2(bgcolor2);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        // Handle error scenario
+      });
+
+    const storedUserBio = localStorage.getItem("userBio");
+
+    if (storedUserBio) {
+      setCurrentUser((prevUser) => ({ ...prevUser, userbio: storedUserBio }));
+    }
+  }, []);
+
+  const saveUserBio = async () => {
+    try {
+      const response = await axios.post(
+        `http://localhost:8800/api/auth/updatecolors?id=${currentUser.id}`,
+        { bgcolor1: bgColor1, bgcolor2: bgColor2 },
+        { headers: { 'Content-Type': 'application/json' } }
+      );
+      setEditMode(false);
+      updateUserBioLocalStorage(editedText);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+    document.location.reload();
+  };
+  
+
+
+
+
   return (
     <div className='App'>
       <LeftBanner />
@@ -51,6 +105,9 @@ function Profile() {
           <div className='profile-headersection' style={{ background: `linear-gradient(${bgColor1}, ${bgColor2})` }}>
             <div id='color-picker' className='color-picker'>
               <button className='edit-button' onClick={() => {
+                if (editMode) {
+                  saveUserBio();
+                }
                 setEditMode(!editMode);
                 showColors();
               }}>
@@ -102,16 +159,14 @@ function Profile() {
                   style={{
                     color: getContrastYIQ(bgColor2),
                     whiteSpace: 'pre-wrap',
-                    overflowWrap: 'break-word'
+                    overflowWrap: 'break-word',
                   }}
                 >
-                  {editedText}
+                  {currentUser.userbio}
                 </p>
-
               </div>
             )}
           </div>
-
         </div>
 
         <div className='row-2-section'>
@@ -170,7 +225,6 @@ function Profile() {
       </div>
     </div>
   );
-
 }
 
-export default Profile
+export default Profile;

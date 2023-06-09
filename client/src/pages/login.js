@@ -47,6 +47,14 @@ function Login() {
     const passwordInput = document.querySelector('#password');
     const submitButton = document.querySelector('#submit');
 
+
+    passwordInput.addEventListener('keyup', (e) => {
+      if(e.key === 'Enter') {
+        submitButton.focus()
+        submitButton.click()
+      }
+    })
+
     const animateSnake = (offset, arrayValue) => {
       if (current) current.pause();
       current = anime({

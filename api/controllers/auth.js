@@ -63,3 +63,73 @@ export const logout = (req, res) => {
     sameSite:"none"
   }).status(200).json("User has been logged out.")
 };
+
+
+export const modifyBio = (req, res) => {
+  const { id, userbio } = req.body;
+  console.log('Request Body:', req.body);
+
+  const q = "UPDATE users SET userbio = ? WHERE id = ?";
+  console.log('SQL Query:', q);
+
+  db.query(q, [userbio, id], (err, result) => {
+    if (err) {
+      console.error('Database Error:', err);
+      return res.status(500).json({ error: 'Internal Server Error' });
+    }
+
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+    res.setHeader('Access-Control-Allow-Methods', 'GET');
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    return res.status(200).json({ userbio: userbio });
+  });
+};
+
+
+export const getColors = (req, res) => {
+  const userId  = req.query.id;
+
+  db.query(
+    'SELECT bgcolor1, bgcolor2 FROM users WHERE id = ?',
+    [userId],
+    (error, results) => {
+      if (error) {
+        console.error('Error:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+      } else {
+        // Check if both colors are empty and provide default values if necessary
+        if (!results[0].bgcolor1 && !results[0].bgcolor2) {
+          results[0].bgcolor1 = '#25d5bd';
+          results[0].bgcolor2 = '#9198e5';
+        }
+        
+        // Send the profile colors as the API response
+        res.json(results[0]);
+      }
+    }
+  );
+};
+
+export const updateColors = (req, res) => {
+  const { bgcolor1, bgcolor2 } = req.body;
+  const userId  = req.query.id;
+
+  db.query(
+    'UPDATE users SET bgcolor1 = ?, bgcolor2 = ? WHERE id = ?',
+    [bgcolor1, bgcolor2, userId],
+    (error, results) => {
+      if (error) {
+        console.error('Error:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+      } else {
+        res.json({ message: 'Profile colors updated successfully' });
+      }
+    }
+  );
+};
+
+
