@@ -1,0 +1,12 @@
+.workoutcontainer {
+    color: white;
+    width: 40%;
+    padding:10px;
+    border-radius:14px;
+    background-color: #111332;
+    margin:10px 5px auto;
+    height:  200px;
+    display: inline-grid;
+    text-align: left;
+}
+

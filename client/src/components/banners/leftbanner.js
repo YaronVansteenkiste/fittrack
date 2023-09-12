@@ -18,8 +18,8 @@ function LeftBanner() {
                 <Nav.Link href="/profile" eventKey="link-1"><FontAwesomeIcon icon={faUser} className='icon' /></Nav.Link>
 
             </div>
-            <div className='navlink'>
-                <Nav.Link eventKey="link-1"><FontAwesomeIcon icon={faDumbbell} className='icon' /></Nav.Link>
+            <div id="navworkouts"className='navlink'>
+                <Nav.Link href="/workouts" eventKey="link-1"><FontAwesomeIcon icon={faDumbbell} className='icon' /></Nav.Link>
 
             </div>
             <div className='navlink'>
